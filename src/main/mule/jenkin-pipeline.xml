@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="8de12a97-7675-49fe-bf8d-cdd09bae9583" >
+		<http:listener-connection host="localhost" port="8081" />
+	</http:listener-config>
+	<flow name="jenkin-pipelineFlow" doc:id="b32923b9-d09a-4eee-aaa5-d31732ddbc37" >
+		<http:listener doc:name="Listener" doc:id="534d449a-cb8d-4519-9b65-4e48664ee5dd" config-ref="HTTP_Listener_config" path="/cicd"/>
+		<logger level="INFO" doc:name="Logger" doc:id="85dfd8bc-8036-45de-ad2f-5379f6b610b9" message="pipeline entered"/>
+		<set-payload value="#[payload]" doc:name="Set Payload" doc:id="a90c5676-437a-476e-a52c-80596fcb4d84" />
+	</flow>
+</mule>
